@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><user>
+  <id>-1</id>
+  <delflag>1</delflag>
+  <gender>0</gender>
+  <name>预留一个元素，使得文件不会为空</name>
+  <code/>
+  <mobile/>
+  <address/>
+  <remark/>
+<user><id>1</id><delflag>0</delflag><gender>0</gender><name>兴明</name><code>No.001</code><mobile>点化</mobile><address>地质</address><remark>被猪</remark></user><user><id>2</id><delflag>0</delflag><gender>0</gender><name>测试</name><code>No002</code><mobile>1233333333</mobile><address>无锡市滨湖区</address><remark/></user></user>
