@@ -2,6 +2,7 @@ package com.test.util;
 
 
 import java.io.File;  
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,6 +22,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;  
 import org.w3c.dom.Text;
 
+import com.test.DemoApplication;
 import com.test.entity.User;  
 	  
 public class XmlUtils {  
@@ -260,6 +262,31 @@ public class XmlUtils {
              return null;  
          }  
     }  
+    
+    
+    
+    public static URL getResource(Class callingClass, String resourceName) {
+    	URL url = Thread.currentThread().getContextClassLoader().getResource(resourceName);
+
+    	if (url == null) {
+    	url = DemoApplication.class.getClassLoader().getResource(resourceName);
+    	}
+
+    	if (url == null) {
+    	ClassLoader cl = callingClass.getClassLoader();
+
+    	if (cl != null) {
+    	url = cl.getResource(resourceName);
+    	}
+    	}
+
+    	if ((url == null) && (resourceName != null)
+    	&& ((resourceName.length() == 0) || (resourceName.charAt(0) != '/'))) {
+    	return getResource(callingClass, '/' + resourceName);
+    	}
+
+    	return url;
+    	}
 }  
 	  
 	  

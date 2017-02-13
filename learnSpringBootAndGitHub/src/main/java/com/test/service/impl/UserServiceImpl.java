@@ -1,7 +1,6 @@
 package com.test.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,11 +14,22 @@ import com.test.util.XmlUtils;
 
 @Service
 public class UserServiceImpl implements UserService{
+	
+//	private static String xmladd = "/Users/macbook/Documents/users.xml";
+	private static String xmladd = "/home/docker_guest_1/spring-boot-maven-docker/users.xml";
 
-	public List<Map> userList(HttpServletRequest request) {
+	public List<Map> userList(HttpServletRequest request)throws Exception {
+		
+		
+		//URL url = XmlUtils.getResource(UserServiceImpl.class,"dataxml/users.xml");
+		
+		//System.out.println(url.getPath().replace("jar:file:","").replace("file:", "").replace(".jar!", "").replace("classes!", "classes"));
+		//不知道为什么会多这么多前缀，替换掉可以成功运行。。或者在本地创建一个xml文件，不放在jar包 就可以了。
+        //List<Map> data = XmlUtils.selectXML(url.getPath().replace("jar:file:", "").replace("file:", "").replace(".jar!", "").replace("classes!", "classes"));
+	
 		
 		//查询集
-		List<Map> data = XmlUtils.selectXML("src/main/resources/dataxml/users.xml");
+		List<Map> data = XmlUtils.selectXML(xmladd);
 		
 		//正常应该写sql条件查询，这里数据量不多就简单处理了
 		
@@ -69,9 +79,9 @@ public class UserServiceImpl implements UserService{
 		String id = request.getParameter("id");
 		
 		if(StringUtils.isNotBlank(id)){
-			XmlUtils.updateXML("src/main/resources/dataxml/users.xml", id, userName, userCode, userGender, userMobile, userAddress, userRemark);
+			XmlUtils.updateXML(xmladd, id, userName, userCode, userGender, userMobile, userAddress, userRemark);
 		}else{
-			XmlUtils.addXML("src/main/resources/dataxml/users.xml", userName, userCode, userGender, userMobile, userAddress, userRemark);
+			XmlUtils.addXML(xmladd, userName, userCode, userGender, userMobile, userAddress, userRemark);
 		}
 	}
 
@@ -80,7 +90,7 @@ public class UserServiceImpl implements UserService{
 		if(StringUtils.isNotBlank(ids)){
 			for(String id:ids.split(",")){
 				if(StringUtils.isBlank(id))continue;
-				XmlUtils.deleteXML("src/main/resources/dataxml/users.xml", id);
+				XmlUtils.deleteXML(xmladd, id);
 			}
 		}
 		

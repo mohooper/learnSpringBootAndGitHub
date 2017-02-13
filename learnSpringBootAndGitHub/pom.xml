@@ -3,8 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>TestGroupId</groupId>
-  <artifactId>testArtifactId</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+ <!--  <artifactId>testArtifactId</artifactId>
+  <version>0.0.1-SNAPSHOT</version> -->
+  
+  <artifactId>spring-boot-maven-docker</artifactId>
+  <version>0</version>
+  
   <packaging>jar</packaging>
 
   <name>testArtifactId</name>
@@ -56,4 +60,6 @@
          </plugin>
       </plugins>
    </build>
+   
+    
 </project>

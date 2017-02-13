@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public interface UserService {
 	
-	public List<Map> userList(HttpServletRequest request);
+	public List<Map> userList(HttpServletRequest request) throws Exception;
 	
 	public void userAddOrEdit(HttpServletRequest request);
 	

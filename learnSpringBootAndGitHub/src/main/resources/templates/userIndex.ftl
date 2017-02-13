@@ -114,7 +114,7 @@ p.font-orange{color: #FF6E07;}
 
 
 
-.userLS{width:1600px;margin-left: -800px;left:50%;position: fixed;margin-top:50px;}
+.userLS{width:1200px;margin-left: -600px;left:50%;position: fixed;margin-top:50px;}
 </style>
 
 <body>
