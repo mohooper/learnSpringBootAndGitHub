@@ -1,5 +1,11 @@
 package com.test.service.impl;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +23,40 @@ public class UserServiceImpl implements UserService{
 	
 //	private static String xmladd = "/Users/macbook/Documents/users.xml";
 	private static String xmladd = "/home/docker_guest_1/spring-boot-maven-docker/users.xml";
+	private static String xmladddir = "/home/docker_guest_1/spring-boot-maven-docker/";
 
+//	private static String xmladddir = "C:/aa/bb/";
+//	private static String xmladd = "C:/aa/bb/users.xml";
 	public List<Map> userList(HttpServletRequest request)throws Exception {
 		
+		//文件不存在，则创建新文件
+		File fdir = new File(xmladddir);
+		if(!fdir.exists()){
+			fdir.mkdirs();
+		}
+		File f = new File(xmladd);
+		if(!f.exists()){
+			
+	      String str = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>"
+	      		+ "<user> <id>-1</id>  <delflag>1</delflag> <gender>0</gender><name>预留一个元素，使得文件不会为空</name><code/><mobile/> <address/><remark/><user><id>1</id><delflag>0</delflag><gender>0</gender><name>兴明</name><code>No.001</code><mobile>点化</mobile><address>地质2</address><remark>被猪</remark></user><user><id>2</id><delflag>0</delflag><gender>0</gender><name>测试</name><code>No002</code><mobile>1233333333</mobile><address>无锡市滨湖区东降</address><remark/></user></user>";
+	      f.createNewFile();
+	      BufferedWriter out = null;
+	      try {
+		      out = new BufferedWriter(new OutputStreamWriter(
+		      new FileOutputStream(f, true)));
+		      out.write(str+"\r\n");
+	      
+	      } catch (Exception e) {
+	          e.printStackTrace();
+	      } finally {
+		      try {
+		         out.close();
+		      } catch (IOException e) {
+		         e.printStackTrace();
+		      }
+	      }
+              
+		}
 		
 		//URL url = XmlUtils.getResource(UserServiceImpl.class,"dataxml/users.xml");
 		
